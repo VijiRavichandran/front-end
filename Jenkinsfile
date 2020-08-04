@@ -4,19 +4,19 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building frontend ...'
-        sh 'nvm install'
+        sh 'npm install'
       }
     }
     stage('Test') {
       steps {
           echo 'Testing frontend ...'
-          sh 'nvm test'
+          sh 'npm test'
       }
     }
     stage('Package') {
       steps {
         echo 'Packaging frontend ...'
-        sh 'nvm run package'
+        sh 'npm run package'
         archiveArtifacts artifacts: '**/distribution/*.zip', fingerprint: true
       }
     }
