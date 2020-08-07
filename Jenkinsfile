@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'node:4-alpine'
+    }
+
+  }
   stages {
     stage('Build') {
       steps {
@@ -7,18 +12,21 @@ pipeline {
         sh 'npm install'
       }
     }
+
     stage('Test') {
       steps {
-          echo 'Testing frontend ...'
-          sh 'npm test'
+        echo 'Testing frontend ...'
+        sh 'npm test'
       }
     }
+
     stage('Package') {
       steps {
         echo 'Packaging frontend ...'
         sh 'npm run package'
-        archiveArtifacts artifacts: '**/distribution/*.zip', fingerprint: true
+        archiveArtifacts(artifacts: '**/distribution/*.zip', fingerprint: true)
       }
     }
+
   }
 }
