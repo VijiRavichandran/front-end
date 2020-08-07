@@ -37,7 +37,8 @@ npm test'''
       }
       steps {
         echo 'Packaging frontend ...'
-        sh 'npm run package'
+        sh '''npm install
+npm run package'''
         archiveArtifacts(artifacts: '**/distribution/*.zip', fingerprint: true)
       }
     }
