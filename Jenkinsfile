@@ -23,7 +23,8 @@ pipeline {
       }
       steps {
         echo 'Testing frontend ...'
-        sh 'npm test'
+        sh '''npm install
+npm test'''
       }
     }
 
